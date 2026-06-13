@@ -63,7 +63,7 @@ TAG_VOCAB = [
     "Python", "Go", "Linux", "Jenkins", "GitOps", "Helm",
 ]
 
-OUTPUT_PATH = Path(__file__).resolve().parent.parent / "public" / "jobs.json"
+OUTPUT_PATH = Path(__file__).resolve().parent.parent / "jobs.json"
 PAGES_PER_QUERY = 1            # bump to widen coverage (costs more API calls)
 REQUEST_PAUSE_SECONDS = 1.0    # be polite to the rate limiter
 
