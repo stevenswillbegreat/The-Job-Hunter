@@ -1,25 +1,27 @@
 #!/usr/bin/env python3
-"""Fetch Cloud / DevOps / Platform roles with python-jobspy → jobs.json.
+"""Fetch Cloud / DevOps / Platform roles → jobs.json (hybrid sources).
 
-Two passes:
-  1. Sri Lanka  — DevOps / Platform / Cloud Engineer on LinkedIn + Google Jobs.
-  2. International — the same roles searched globally, kept only when the
-     posting mentions visa sponsorship.
+Two passes, each using the source that actually works for it:
+
+  1. Sri Lanka  — JSearch API (RapidAPI). jobspy's LinkedIn scraper rejects
+     Sri Lanka (not in its country enum) and Google Jobs returns nothing from
+     CI runner IPs, so JSearch is the reliable source for local roles.
+  2. International — python-jobspy scraping LinkedIn, kept only when the
+     posting mentions visa sponsorship. LinkedIn gives strong global coverage.
 
 Results are de-duplicated, split into `sri-lanka` / `international` buckets,
-and written in the shape public/../index.html expects:
+and written in the shape ../index.html expects:
 
     { "updated": "YYYY-MM-DD", "jobs": [ { ... }, ... ] }
 
-No API key required — jobspy scrapes the job boards directly. Because LinkedIn
-and Google aggressively rate-limit datacenter IPs (e.g. GitHub Actions
-runners), every scrape is wrapped in exception handling: a throttled or failed
-source is logged and skipped rather than crashing the run, and if *every*
-source fails we keep the previous jobs.json instead of clobbering the live
-site with an empty list.
+Configuration (all via environment, nothing hard-coded):
+  JSEARCH_API_KEY / RAPIDAPI_KEY   RapidAPI key for the Sri Lanka pass.
+  JOBSPY_PROXIES                   Optional comma-separated host:port proxies
+                                   to dodge LinkedIn throttling on CI IPs.
 
-Optional: set JOBSPY_PROXIES (comma-separated host:port or user:pass@host:port)
-to route requests through proxies and dodge throttling on shared CI IPs.
+Every network call is wrapped in exception handling: a throttled or failed
+source is logged and skipped rather than crashing the run. If *every* source
+yields nothing we keep the previous jobs.json instead of blanking the site.
 """
 
 from __future__ import annotations
@@ -28,16 +30,18 @@ import datetime as dt
 import json
 import os
 import sys
+import time
 from pathlib import Path
 
-import pandas as pd
+import requests
 
 try:
     from jobspy import scrape_jobs
-except ImportError:  # pragma: no cover - clearer message than a raw traceback
-    raise SystemExit(
-        "python-jobspy is not installed. Run: pip install -r requirements.txt"
-    )
+except ImportError:  # pragma: no cover
+    raise SystemExit("python-jobspy is not installed. Run: pip install -r requirements.txt")
+
+# jobspy pulls in pandas; import lazily-safe for type checks below.
+import pandas as pd
 
 # --------------------------------------------------------------------------- #
 # Configuration
@@ -45,26 +49,24 @@ except ImportError:  # pragma: no cover - clearer message than a raw traceback
 
 ROLES = ["DevOps Engineer", "Platform Engineer", "Cloud Engineer"]
 
-# jobspy's LinkedIn scraper validates `location` against a fixed country enum
-# that does NOT include Sri Lanka, and a LinkedIn error aborts the whole
-# combined call. So the Sri Lanka pass uses Google Jobs only (Google keys off
-# google_search_term, not the country enum); the global pass uses both.
-SITES_SRI_LANKA = ["google"]
-SITES_INTERNATIONAL = ["linkedin", "google"]
+# --- Sri Lanka pass (JSearch) ---
+JSEARCH_HOST = "jsearch.p.rapidapi.com"
+JSEARCH_URL = f"https://{JSEARCH_HOST}/search"
+JSEARCH_KEY = os.environ.get("JSEARCH_API_KEY") or os.environ.get("RAPIDAPI_KEY")
+JSEARCH_PAGES = 1
+JSEARCH_PAUSE = 1.0  # seconds between calls, polite to the rate limiter
 
-# Keyword that qualifies an international posting as relocation-friendly.
+# --- International pass (jobspy) ---
+INTL_SITES = ["linkedin"]  # Google Jobs returns nothing from CI IPs
+RESULTS_PER_SEARCH = 25
+HOURS_OLD = 720  # last 30 days
+PROXIES = [p.strip() for p in os.environ.get("JOBSPY_PROXIES", "").split(",") if p.strip()] or None
+
 VISA_KEYWORDS = [
-    "visa sponsorship",
-    "visa sponsor",
-    "sponsor visa",
-    "sponsorship available",
-    "will sponsor",
-    "relocation assistance",
-    "relocation package",
-    "work permit",
+    "visa sponsorship", "visa sponsor", "sponsor visa", "sponsorship available",
+    "will sponsor", "relocation assistance", "relocation package", "work permit",
 ]
 
-# Tag vocabulary surfaced on the cards / used as quick filters.
 TAG_VOCAB = [
     "DevOps", "Cloud", "AWS", "Azure", "GCP", "Kubernetes", "K8s",
     "Terraform", "Ansible", "Docker", "CI/CD", "SRE", "Platform",
@@ -72,62 +74,11 @@ TAG_VOCAB = [
 ]
 
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "jobs.json"
-RESULTS_PER_SEARCH = 25         # per role, per site
-HOURS_OLD = 720                 # last 30 days
-PROXIES = [
-    p.strip() for p in os.environ.get("JOBSPY_PROXIES", "").split(",") if p.strip()
-] or None
 
 
 # --------------------------------------------------------------------------- #
-# Scraping (with graceful failure handling)
+# Shared helpers
 # --------------------------------------------------------------------------- #
-
-def safe_scrape(*, sites: list[str], search_term: str, google_search_term: str, location: str | None) -> pd.DataFrame:
-    """Scrape one query across `sites`, swallowing throttling / network errors.
-
-    Returns a (possibly empty) DataFrame. A failure on one source never aborts
-    the run — it's logged and that source contributes nothing.
-    """
-    try:
-        df = scrape_jobs(
-            site_name=sites,
-            search_term=search_term,
-            google_search_term=google_search_term,
-            location=location,
-            results_wanted=RESULTS_PER_SEARCH,
-            hours_old=HOURS_OLD,
-            linkedin_fetch_description=True,  # needed to scan for visa wording
-            proxies=PROXIES,
-            verbose=0,
-        )
-        if df is None or df.empty:
-            print(f"  · no results for {search_term!r} ({location or 'global'})")
-            return pd.DataFrame()
-        print(f"  · {len(df):>3} rows for {search_term!r} ({location or 'global'})")
-        return df
-    except Exception as exc:  # noqa: BLE001 - any scrape error must not crash CI
-        # LinkedIn/Google throttling typically surfaces as HTTP 429 or a
-        # connection/parse error; treat all of them as "this source is
-        # unavailable right now" and move on.
-        print(
-            f"  ! scrape failed for {search_term!r} ({location or 'global'}): "
-            f"{type(exc).__name__}: {exc}",
-            file=sys.stderr,
-        )
-        return pd.DataFrame()
-
-
-# --------------------------------------------------------------------------- #
-# Normalisation helpers
-# --------------------------------------------------------------------------- #
-
-def _val(row: pd.Series, key: str, default: str = "") -> str:
-    v = row.get(key, default)
-    if v is None or (isinstance(v, float) and pd.isna(v)):
-        return default
-    return str(v)
-
 
 def extract_tags(text: str) -> list[str]:
     blob = text.lower()
@@ -139,45 +90,6 @@ def extract_tags(text: str) -> list[str]:
                 found.append(label)
     return found
 
-
-def format_salary(row: pd.Series) -> str | None:
-    lo, hi = row.get("min_amount"), row.get("max_amount")
-    cur = _val(row, "currency")
-    interval = _val(row, "interval")
-    has_lo = lo is not None and not pd.isna(lo)
-    has_hi = hi is not None and not pd.isna(hi)
-    if has_lo and has_hi:
-        return f"{cur} {int(lo):,}–{int(hi):,} {interval}".strip()
-    if has_lo:
-        return f"{cur} {int(lo):,}+ {interval}".strip()
-    return None
-
-
-def normalise(row: pd.Series, *, category: str, relocation: bool) -> dict:
-    title = _val(row, "title", "Untitled role")
-    desc = _val(row, "description")
-    location = _val(row, "location") or ("Remote" if row.get("is_remote") else "Location not specified")
-    return {
-        "category": category,
-        "title": title,
-        "company": _val(row, "company", "Unknown company"),
-        "location": location,
-        "salary": format_salary(row),
-        "url": _val(row, "job_url_direct") or _val(row, "job_url") or "#",
-        "relocation": relocation,
-        "tags": extract_tags(f"{title} {desc}"),
-        "_id": _val(row, "id") or _val(row, "job_url"),
-    }
-
-
-def has_visa_signal(row: pd.Series) -> bool:
-    blob = f"{_val(row, 'title')} {_val(row, 'description')}".lower()
-    return any(kw in blob for kw in VISA_KEYWORDS)
-
-
-# --------------------------------------------------------------------------- #
-# De-duplication
-# --------------------------------------------------------------------------- #
 
 def dedupe(jobs: list[dict]) -> list[dict]:
     seen: set = set()
@@ -196,40 +108,140 @@ def dedupe(jobs: list[dict]) -> list[dict]:
 
 
 # --------------------------------------------------------------------------- #
-# Query orchestration
+# Sri Lanka pass — JSearch API
 # --------------------------------------------------------------------------- #
 
+def jsearch_query(query: str) -> list[dict]:
+    headers = {"X-RapidAPI-Key": JSEARCH_KEY, "X-RapidAPI-Host": JSEARCH_HOST}
+    params = {"query": query, "num_pages": str(JSEARCH_PAGES), "country": "lk", "date_posted": "month"}
+    try:
+        resp = requests.get(JSEARCH_URL, headers=headers, params=params, timeout=30)
+        resp.raise_for_status()
+        return resp.json().get("data", []) or []
+    except requests.RequestException as exc:
+        print(f"  ! JSearch request failed for {query!r}: {exc}", file=sys.stderr)
+        return []
+
+
+def normalise_jsearch(raw: dict) -> dict:
+    bits = [raw.get("job_city"), raw.get("job_state"), raw.get("job_country")]
+    location = ", ".join(b for b in bits if b) or "Sri Lanka"
+    lo, hi, cur = raw.get("job_min_salary"), raw.get("job_max_salary"), raw.get("job_salary_currency") or ""
+    if lo and hi:
+        salary = f"{cur} {int(lo):,}–{int(hi):,}".strip()
+    elif lo:
+        salary = f"{cur} {int(lo):,}+".strip()
+    else:
+        salary = None
+    title = raw.get("job_title", "Untitled role")
+    desc = raw.get("job_description", "")
+    return {
+        "category": "sri-lanka",
+        "title": title,
+        "company": raw.get("employer_name", "Unknown company"),
+        "location": location,
+        "salary": salary,
+        "url": raw.get("job_apply_link") or raw.get("job_google_link") or "#",
+        "relocation": False,
+        "tags": extract_tags(f"{title} {desc}"),
+        "_id": raw.get("job_id"),
+    }
+
+
 def fetch_sri_lanka() -> list[dict]:
-    print("Pass 1 — Sri Lanka (Google Jobs)")
+    print("Pass 1 — Sri Lanka (JSearch)")
+    if not JSEARCH_KEY:
+        print("  ! JSEARCH_API_KEY not set — skipping Sri Lanka pass.", file=sys.stderr)
+        return []
     collected: list[dict] = []
     for role in ROLES:
-        df = safe_scrape(
-            sites=SITES_SRI_LANKA,
-            search_term=role,
-            google_search_term=f"{role} jobs in Sri Lanka",
-            location="Sri Lanka",
-        )
-        for _, row in df.iterrows():
-            collected.append(normalise(row, category="sri-lanka", relocation=False))
+        query = f"{role} in Sri Lanka"
+        rows = jsearch_query(query)
+        print(f"  · {len(rows):>3} rows for {query!r}")
+        collected.extend(normalise_jsearch(r) for r in rows)
+        time.sleep(JSEARCH_PAUSE)
     return collected
+
+
+# --------------------------------------------------------------------------- #
+# International pass — jobspy / LinkedIn
+# --------------------------------------------------------------------------- #
+
+def safe_scrape(*, search_term: str, google_search_term: str) -> pd.DataFrame:
+    try:
+        df = scrape_jobs(
+            site_name=INTL_SITES,
+            search_term=search_term,
+            google_search_term=google_search_term,
+            results_wanted=RESULTS_PER_SEARCH,
+            hours_old=HOURS_OLD,
+            linkedin_fetch_description=True,
+            proxies=PROXIES,
+            verbose=0,
+        )
+        if df is None or df.empty:
+            print(f"  · no results for {search_term!r} (global)")
+            return pd.DataFrame()
+        print(f"  · {len(df):>3} rows for {search_term!r} (global)")
+        return df
+    except Exception as exc:  # noqa: BLE001 - throttling must not crash CI
+        print(f"  ! scrape failed for {search_term!r}: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return pd.DataFrame()
+
+
+def _val(row: pd.Series, key: str, default: str = "") -> str:
+    v = row.get(key, default)
+    if v is None or (isinstance(v, float) and pd.isna(v)):
+        return default
+    return str(v)
+
+
+def has_visa_signal(row: pd.Series) -> bool:
+    blob = f"{_val(row, 'title')} {_val(row, 'description')}".lower()
+    return any(kw in blob for kw in VISA_KEYWORDS)
+
+
+def normalise_jobspy(row: pd.Series) -> dict:
+    title = _val(row, "title", "Untitled role")
+    desc = _val(row, "description")
+    location = _val(row, "location") or ("Remote" if row.get("is_remote") else "Location not specified")
+    lo, hi, cur, interval = row.get("min_amount"), row.get("max_amount"), _val(row, "currency"), _val(row, "interval")
+    if lo is not None and not pd.isna(lo) and hi is not None and not pd.isna(hi):
+        salary = f"{cur} {int(lo):,}–{int(hi):,} {interval}".strip()
+    elif lo is not None and not pd.isna(lo):
+        salary = f"{cur} {int(lo):,}+ {interval}".strip()
+    else:
+        salary = None
+    return {
+        "category": "international",
+        "title": title,
+        "company": _val(row, "company", "Unknown company"),
+        "location": location,
+        "salary": salary,
+        "url": _val(row, "job_url_direct") or _val(row, "job_url") or "#",
+        "relocation": True,
+        "tags": extract_tags(f"{title} {desc}"),
+        "_id": _val(row, "id") or _val(row, "job_url"),
+    }
 
 
 def fetch_international() -> list[dict]:
-    print("Pass 2 — International (visa sponsorship)")
+    print("Pass 2 — International (LinkedIn, visa sponsorship)")
     collected: list[dict] = []
     for role in ROLES:
         df = safe_scrape(
-            sites=SITES_INTERNATIONAL,
             search_term=f"{role} visa sponsorship",
             google_search_term=f"{role} jobs with visa sponsorship",
-            location=None,  # global
         )
         for _, row in df.iterrows():
-            if not has_visa_signal(row):
-                continue
-            collected.append(normalise(row, category="international", relocation=True))
+            if has_visa_signal(row):
+                collected.append(normalise_jobspy(row))
     return collected
 
+
+# --------------------------------------------------------------------------- #
+# Orchestration
+# --------------------------------------------------------------------------- #
 
 def strip_internal(jobs: list[dict]) -> list[dict]:
     for job in jobs:
@@ -254,8 +266,6 @@ def main() -> int:
     combined = strip_internal(sri_lanka + international)
 
     if not combined:
-        # Every source was throttled / empty. Don't overwrite a good jobs.json
-        # with an empty list — leave the live site intact and signal failure.
         print(
             "\nNo jobs scraped (all sources throttled or empty). "
             "Leaving existing jobs.json unchanged.",

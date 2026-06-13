@@ -28,9 +28,10 @@ jobs:
 
     - name: Run Job Fetcher Script
       env:
-        # Optional: comma-separated host:port proxies to dodge LinkedIn/Google
-        # throttling on GitHub's shared runner IPs. Leave the secret unset to
-        # run without proxies (jobspy needs no API key).
+        # RapidAPI key for the Sri Lanka pass (JSearch).
+        JSEARCH_API_KEY: ${{ secrets.JSEARCH_API_KEY }}
+        # Optional: comma-separated host:port proxies to dodge LinkedIn
+        # throttling on GitHub's shared runner IPs.
         JOBSPY_PROXIES: ${{ secrets.JOBSPY_PROXIES }}
       run: python scripts/fetch_jobs.py
 
