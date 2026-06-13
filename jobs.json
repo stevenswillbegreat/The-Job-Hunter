@@ -3,63 +3,470 @@
   "jobs": [
     {
       "category": "sri-lanka",
+      "title": "Senior DevOps & Security Engineer (Platform Owner)",
+      "company": "Rubaai Technologies",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/senior-devops-security-engineer-platform-owner-at-rubaai-technologies-4425552632",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Architect - DevOps",
+      "company": "Sysco LABS Sri Lanka",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/architect-devops-at-sysco-labs-sri-lanka-4426719583",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "DevOps Specialist",
+      "company": "Enactor",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/devops-specialist-at-enactor-4425579865",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Go",
+        "Linux",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior DevOps Engineer / Associate DevOps Lead",
+      "company": "Cambio Sri Lanka",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://careers.cambio.lk/jobs/7841903-senior-devops-engineer-associate-devops-lead",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Go",
+        "Linux",
+        "Jenkins",
+        "GitOps"
+      ]
+    },
+    {
+      "category": "sri-lanka",
       "title": "Lead DevOps Engineer",
-      "company": "WSO2",
-      "location": "Colombo, Sri Lanka (Hybrid)",
-      "salary": "LKR 600k–850k / mo",
-      "url": "https://example.com/jobs/wso2-lead-devops",
+      "company": "LOLC Technologies",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/lead-devops-engineer-at-lolc-technologies-4426022948",
       "relocation": false,
-      "tags": ["DevOps", "Kubernetes", "AWS", "Terraform", "CI/CD"]
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Go",
+        "Jenkins"
+      ]
     },
     {
       "category": "sri-lanka",
-      "title": "Senior Cloud Platform Engineer",
+      "title": "DevOps Engineer (AWS & Multi-Cloud)",
+      "company": "EchonLabs",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://itpro.lk/job/13941/devops-engineer-aws-multi-cloud-at-echonlabs/",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Lead Engineer - DevOps (Infrastructure & Security)",
+      "company": "Orysys Limited",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://itpro.lk/job/13844/lead-engineer-devops-infrastructure-security-at-orysys-limited/",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Kubernetes",
+        "CI/CD",
+        "Platform",
+        "Linux",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior Dev Ops Engineer",
+      "company": "Dialog Axiata PLC",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://gaurajobs.lk/job/senior-dev-ops-engineer/",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "CLOUD ENGINEER – L1",
+      "company": "OREL IT",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/cloud-engineer-%E2%80%93-l1-at-orel-it-4426955789",
+      "relocation": false,
+      "tags": [
+        "Cloud",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "AWS DevOps Engineer",
+      "company": "HCLTech Sri Lanka",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/aws-devops-engineer-at-hcltech-sri-lanka-4415612026",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "CI/CD",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Technical Lead – DevOps",
+      "company": "Sysco LABS Sri Lanka",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/technical-lead-%E2%80%93-devops-at-sysco-labs-sri-lanka-4414600246",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "Python",
+        "Go",
+        "Linux",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Solutions Architect – Cybersecurity",
+      "company": "Tech One Global Ltd",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/solutions-architect-%E2%80%93-cybersecurity-at-tech-one-global-ltd-4426919104",
+      "relocation": false,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Architect-Java",
+      "company": "Virtusa",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/architect-java-at-virtusa-4421928389",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior IFS Solution Architect (IGT1)",
+      "company": "IFS",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://jobs.smartrecruiters.com/IFS1/744000130405424-senior-ifs-solution-architect-igt1-",
+      "relocation": false,
+      "tags": [
+        "Cloud",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Lead Cloud Architect Jobs in Colombo",
+      "company": "Cosmoquick",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://cosmoquick.com/jobs-in/colombo/cloud-architect-jobs/lead",
+      "relocation": false,
+      "tags": [
+        "Cloud"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Architect – DevOps",
       "company": "Sysco LABS",
-      "location": "Colombo, Sri Lanka",
-      "salary": "LKR 500k–700k / mo",
-      "url": "https://example.com/jobs/sysco-cloud-platform",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://tjncareers.online/job/architect-devops/",
       "relocation": false,
-      "tags": ["Cloud", "GCP", "Platform", "Kubernetes", "Go"]
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Platform",
+        "Go"
+      ]
     },
     {
       "category": "sri-lanka",
-      "title": "Senior Site Reliability Engineer",
-      "company": "99x",
-      "location": "Colombo, Sri Lanka (Remote-friendly)",
-      "salary": "LKR 550k–750k / mo",
-      "url": "https://example.com/jobs/99x-sre",
+      "title": "IFS Technical Architect / Technician (IGT1)",
+      "company": "IFS",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://jobs.smartrecruiters.com/IFS1/744000130405659-ifs-technical-architect-technician-igt1-",
       "relocation": false,
-      "tags": ["SRE", "AWS", "Observability", "Terraform", "DevOps"]
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Docker",
+        "Platform",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Junior Cloud Architect Jobs in Colombo",
+      "company": "Cosmoquick",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://cosmoquick.com/jobs-in/colombo/cloud-architect-jobs/junior",
+      "relocation": false,
+      "tags": [
+        "Cloud"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Remote Cloud Architect Jobs in Colombo",
+      "company": "Cosmoquick",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://cosmoquick.com/remote-jobs-in/colombo/remote-cloud-architect",
+      "relocation": false,
+      "tags": [
+        "Cloud"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior Lead – Systems & Solutions (Solution Architecture)",
+      "company": "Dialog Axiata PLC",
+      "location": "LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/senior-lead-%E2%80%93-systems-solutions-solution-architecture-at-dialog-axiata-plc-4415489917",
+      "relocation": false,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior Lead Engineer - Cloud Transformation",
+      "company": "Commercial Bank of Ceylon PLC",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://xpress.jobs/Jobs/View/295052",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "SRE",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Cloud Engineer / Senior Cloud Engineer – Linux: AWS (IGT1)",
+      "company": "IFS",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://jobs.smartrecruiters.com/IFS1/744000127192989-cloud-engineer-senior-cloud-engineer-linux-aws-igt1-",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Terraform",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Python",
+        "Linux",
+        "GitOps"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior Data Engineer – Integrations & Automation (Australian Clients)",
+      "company": "CeyberTech",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/senior-data-engineer-%E2%80%93-integrations-automation-australian-clients-at-ceybertech-4426243625",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Azure",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Azure Infrastructure Engineer",
+      "company": "Growthprof",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/azure-infrastructure-engineer-at-growthprof-4424183239",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "CI/CD",
+        "Platform",
+        "Go"
+      ]
     },
     {
       "category": "international",
-      "title": "Senior DevOps Engineer",
-      "company": "Canva",
-      "location": "Sydney, Australia",
-      "salary": "AUD 160k–195k",
-      "url": "https://example.com/jobs/canva-devops",
+      "title": "Cloud Engineer at Epic Trenton, NJ",
+      "company": "Epic",
+      "location": "Trenton, New Jersey, US",
+      "salary": null,
+      "url": "https://tonyspeciale.com/job-listing/job/cloud-engineer-at-epic-trenton-nj-ME1XOFlxQWpNTmhUZnE4ZTFJcCtaQzRhdXc9PQ==",
       "relocation": true,
-      "tags": ["DevOps", "AWS", "Kubernetes", "Terraform"]
+      "tags": [
+        "DevOps",
+        "Cloud"
+      ]
     },
     {
       "category": "international",
-      "title": "Lead Platform Engineer",
-      "company": "Zalando",
-      "location": "Berlin, Germany",
-      "salary": "€85k–110k",
-      "url": "https://example.com/jobs/zalando-platform-lead",
+      "title": "Cloud Engineer at Epic South Portland, ME",
+      "company": "Epic",
+      "location": "South Portland, Maine, US",
+      "salary": null,
+      "url": "https://boocatclub.com/list/job/cloud-engineer-at-epic-south-portland-me-dGFJWWRPV0grdzQ0TjNqa1hXUlIva1VlL2c9PQ==",
       "relocation": true,
-      "tags": ["Platform", "Kubernetes", "GCP", "Go", "CI/CD"]
-    },
-    {
-      "category": "international",
-      "title": "Senior Cloud Infrastructure Engineer",
-      "company": "Shopify",
-      "location": "Toronto, Canada (Remote)",
-      "salary": "CAD 150k–185k",
-      "url": "https://example.com/jobs/shopify-cloud-infra",
-      "relocation": true,
-      "tags": ["Cloud", "AWS", "Terraform", "Kubernetes", "SRE"]
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Go",
+        "Linux"
+      ]
     }
   ]
 }
