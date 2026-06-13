@@ -44,7 +44,13 @@ except ImportError:  # pragma: no cover - clearer message than a raw traceback
 # --------------------------------------------------------------------------- #
 
 ROLES = ["DevOps Engineer", "Platform Engineer", "Cloud Engineer"]
-SITES = ["linkedin", "google"]
+
+# jobspy's LinkedIn scraper validates `location` against a fixed country enum
+# that does NOT include Sri Lanka, and a LinkedIn error aborts the whole
+# combined call. So the Sri Lanka pass uses Google Jobs only (Google keys off
+# google_search_term, not the country enum); the global pass uses both.
+SITES_SRI_LANKA = ["google"]
+SITES_INTERNATIONAL = ["linkedin", "google"]
 
 # Keyword that qualifies an international posting as relocation-friendly.
 VISA_KEYWORDS = [
@@ -77,15 +83,15 @@ PROXIES = [
 # Scraping (with graceful failure handling)
 # --------------------------------------------------------------------------- #
 
-def safe_scrape(*, search_term: str, google_search_term: str, location: str | None) -> pd.DataFrame:
-    """Scrape one query across SITES, swallowing throttling / network errors.
+def safe_scrape(*, sites: list[str], search_term: str, google_search_term: str, location: str | None) -> pd.DataFrame:
+    """Scrape one query across `sites`, swallowing throttling / network errors.
 
     Returns a (possibly empty) DataFrame. A failure on one source never aborts
     the run — it's logged and that source contributes nothing.
     """
     try:
         df = scrape_jobs(
-            site_name=SITES,
+            site_name=sites,
             search_term=search_term,
             google_search_term=google_search_term,
             location=location,
@@ -194,10 +200,11 @@ def dedupe(jobs: list[dict]) -> list[dict]:
 # --------------------------------------------------------------------------- #
 
 def fetch_sri_lanka() -> list[dict]:
-    print("Pass 1 — Sri Lanka (LinkedIn + Google Jobs)")
+    print("Pass 1 — Sri Lanka (Google Jobs)")
     collected: list[dict] = []
     for role in ROLES:
         df = safe_scrape(
+            sites=SITES_SRI_LANKA,
             search_term=role,
             google_search_term=f"{role} jobs in Sri Lanka",
             location="Sri Lanka",
@@ -212,6 +219,7 @@ def fetch_international() -> list[dict]:
     collected: list[dict] = []
     for role in ROLES:
         df = safe_scrape(
+            sites=SITES_INTERNATIONAL,
             search_term=f"{role} visa sponsorship",
             google_search_term=f"{role} jobs with visa sponsorship",
             location=None,  # global
