@@ -1,0 +1,65 @@
+{
+  "updated": "2026-06-13",
+  "jobs": [
+    {
+      "category": "sri-lanka",
+      "title": "Lead DevOps Engineer",
+      "company": "WSO2",
+      "location": "Colombo, Sri Lanka (Hybrid)",
+      "salary": "LKR 600k–850k / mo",
+      "url": "https://example.com/jobs/wso2-lead-devops",
+      "relocation": false,
+      "tags": ["DevOps", "Kubernetes", "AWS", "Terraform", "CI/CD"]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior Cloud Platform Engineer",
+      "company": "Sysco LABS",
+      "location": "Colombo, Sri Lanka",
+      "salary": "LKR 500k–700k / mo",
+      "url": "https://example.com/jobs/sysco-cloud-platform",
+      "relocation": false,
+      "tags": ["Cloud", "GCP", "Platform", "Kubernetes", "Go"]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior Site Reliability Engineer",
+      "company": "99x",
+      "location": "Colombo, Sri Lanka (Remote-friendly)",
+      "salary": "LKR 550k–750k / mo",
+      "url": "https://example.com/jobs/99x-sre",
+      "relocation": false,
+      "tags": ["SRE", "AWS", "Observability", "Terraform", "DevOps"]
+    },
+    {
+      "category": "international",
+      "title": "Senior DevOps Engineer",
+      "company": "Canva",
+      "location": "Sydney, Australia",
+      "salary": "AUD 160k–195k",
+      "url": "https://example.com/jobs/canva-devops",
+      "relocation": true,
+      "tags": ["DevOps", "AWS", "Kubernetes", "Terraform"]
+    },
+    {
+      "category": "international",
+      "title": "Lead Platform Engineer",
+      "company": "Zalando",
+      "location": "Berlin, Germany",
+      "salary": "€85k–110k",
+      "url": "https://example.com/jobs/zalando-platform-lead",
+      "relocation": true,
+      "tags": ["Platform", "Kubernetes", "GCP", "Go", "CI/CD"]
+    },
+    {
+      "category": "international",
+      "title": "Senior Cloud Infrastructure Engineer",
+      "company": "Shopify",
+      "location": "Toronto, Canada (Remote)",
+      "salary": "CAD 150k–185k",
+      "url": "https://example.com/jobs/shopify-cloud-infra",
+      "relocation": true,
+      "tags": ["Cloud", "AWS", "Terraform", "Kubernetes", "SRE"]
+    }
+  ]
+}
