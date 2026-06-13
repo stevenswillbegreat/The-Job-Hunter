@@ -28,7 +28,10 @@ jobs:
 
     - name: Run Job Fetcher Script
       env:
-        JSEARCH_API_KEY: ${{ secrets.JSEARCH_API_KEY }} # Set this in GitHub Repo Secrets
+        # Optional: comma-separated host:port proxies to dodge LinkedIn/Google
+        # throttling on GitHub's shared runner IPs. Leave the secret unset to
+        # run without proxies (jobspy needs no API key).
+        JOBSPY_PROXIES: ${{ secrets.JOBSPY_PROXIES }}
       run: python scripts/fetch_jobs.py
 
     - name: Commit and Push Changes

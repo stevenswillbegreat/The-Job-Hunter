@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
-"""Fetch Cloud / DevOps roles and write them to public/jobs.json.
+"""Fetch Cloud / DevOps / Platform roles with python-jobspy → jobs.json.
 
 Two passes:
-  1. Sri Lanka  — Senior/Lead DevOps, Cloud Architect, Senior Cloud Engineer.
-  2. International — the same roles worldwide, kept only when the posting
-     mentions visa sponsorship, relocation assistance, or international remote.
+  1. Sri Lanka  — DevOps / Platform / Cloud Engineer on LinkedIn + Google Jobs.
+  2. International — the same roles searched globally, kept only when the
+     posting mentions visa sponsorship.
 
 Results are de-duplicated, split into `sri-lanka` / `international` buckets,
-and written in the shape that public/index.html expects:
+and written in the shape public/../index.html expects:
 
     { "updated": "YYYY-MM-DD", "jobs": [ { ... }, ... ] }
 
-Data source: JSearch (https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch).
-Provide the API key via the JSEARCH_API_KEY (or RAPIDAPI_KEY) environment
-variable — nothing is hard-coded.
+No API key required — jobspy scrapes the job boards directly. Because LinkedIn
+and Google aggressively rate-limit datacenter IPs (e.g. GitHub Actions
+runners), every scrape is wrapped in exception handling: a throttled or failed
+source is logged and skipped rather than crashing the run, and if *every*
+source fails we keep the previous jobs.json instead of clobbering the live
+site with an empty list.
+
+Optional: set JOBSPY_PROXIES (comma-separated host:port or user:pass@host:port)
+to route requests through proxies and dodge throttling on shared CI IPs.
 """
 
 from __future__ import annotations
@@ -22,37 +28,33 @@ import datetime as dt
 import json
 import os
 import sys
-import time
 from pathlib import Path
 
-import requests
+import pandas as pd
+
+try:
+    from jobspy import scrape_jobs
+except ImportError:  # pragma: no cover - clearer message than a raw traceback
+    raise SystemExit(
+        "python-jobspy is not installed. Run: pip install -r requirements.txt"
+    )
 
 # --------------------------------------------------------------------------- #
 # Configuration
 # --------------------------------------------------------------------------- #
 
-API_HOST = "jsearch.p.rapidapi.com"
-API_URL = f"https://{API_HOST}/search"
-API_KEY = os.environ.get("JSEARCH_API_KEY") or os.environ.get("RAPIDAPI_KEY")
+ROLES = ["DevOps Engineer", "Platform Engineer", "Cloud Engineer"]
+SITES = ["linkedin", "google"]
 
-# Roles we care about. Used to build query strings.
-ROLES = [
-    "Senior DevOps Engineer",
-    "Lead DevOps Engineer",
-    "Cloud Architect",
-    "Senior Cloud Engineer",
-]
-
-# Keywords that mark an international posting as relocation-friendly.
-RELOCATION_KEYWORDS = [
+# Keyword that qualifies an international posting as relocation-friendly.
+VISA_KEYWORDS = [
     "visa sponsorship",
     "visa sponsor",
     "sponsor visa",
+    "sponsorship available",
+    "will sponsor",
     "relocation assistance",
     "relocation package",
-    "relocation support",
-    "will relocate",
-    "remote international",
     "work permit",
 ]
 
@@ -64,113 +66,107 @@ TAG_VOCAB = [
 ]
 
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "jobs.json"
-PAGES_PER_QUERY = 1            # bump to widen coverage (costs more API calls)
-REQUEST_PAUSE_SECONDS = 1.0    # be polite to the rate limiter
+RESULTS_PER_SEARCH = 25         # per role, per site
+HOURS_OLD = 720                 # last 30 days
+PROXIES = [
+    p.strip() for p in os.environ.get("JOBSPY_PROXIES", "").split(",") if p.strip()
+] or None
 
 
 # --------------------------------------------------------------------------- #
-# API access
+# Scraping (with graceful failure handling)
 # --------------------------------------------------------------------------- #
 
-def search_jobs(query: str, *, num_pages: int = 1, country: str | None = None) -> list[dict]:
-    """Call JSearch for a single query string and return raw job dicts."""
-    if not API_KEY:
-        raise SystemExit(
-            "Missing API key. Set JSEARCH_API_KEY (or RAPIDAPI_KEY) in the "
-            "environment before running this script."
-        )
+def safe_scrape(*, search_term: str, google_search_term: str, location: str | None) -> pd.DataFrame:
+    """Scrape one query across SITES, swallowing throttling / network errors.
 
-    headers = {
-        "X-RapidAPI-Key": API_KEY,
-        "X-RapidAPI-Host": API_HOST,
-    }
-    params = {
-        "query": query,
-        "num_pages": str(num_pages),
-        "date_posted": "month",
-    }
-    if country:
-        params["country"] = country
-
+    Returns a (possibly empty) DataFrame. A failure on one source never aborts
+    the run — it's logged and that source contributes nothing.
+    """
     try:
-        resp = requests.get(API_URL, headers=headers, params=params, timeout=30)
-        resp.raise_for_status()
-    except requests.RequestException as exc:
-        print(f"  ! request failed for {query!r}: {exc}", file=sys.stderr)
-        return []
-
-    payload = resp.json()
-    return payload.get("data", []) or []
+        df = scrape_jobs(
+            site_name=SITES,
+            search_term=search_term,
+            google_search_term=google_search_term,
+            location=location,
+            results_wanted=RESULTS_PER_SEARCH,
+            hours_old=HOURS_OLD,
+            linkedin_fetch_description=True,  # needed to scan for visa wording
+            proxies=PROXIES,
+            verbose=0,
+        )
+        if df is None or df.empty:
+            print(f"  · no results for {search_term!r} ({location or 'global'})")
+            return pd.DataFrame()
+        print(f"  · {len(df):>3} rows for {search_term!r} ({location or 'global'})")
+        return df
+    except Exception as exc:  # noqa: BLE001 - any scrape error must not crash CI
+        # LinkedIn/Google throttling typically surfaces as HTTP 429 or a
+        # connection/parse error; treat all of them as "this source is
+        # unavailable right now" and move on.
+        print(
+            f"  ! scrape failed for {search_term!r} ({location or 'global'}): "
+            f"{type(exc).__name__}: {exc}",
+            file=sys.stderr,
+        )
+        return pd.DataFrame()
 
 
 # --------------------------------------------------------------------------- #
 # Normalisation helpers
 # --------------------------------------------------------------------------- #
 
-def _text_blob(raw: dict) -> str:
-    """Lowercase concatenation of the fields worth scanning for keywords."""
-    parts = [
-        raw.get("job_title", ""),
-        raw.get("job_description", ""),
-        raw.get("job_highlights", "") if isinstance(raw.get("job_highlights"), str) else "",
-        " ".join(str(v) for v in (raw.get("job_highlights") or {}).values())
-        if isinstance(raw.get("job_highlights"), dict) else "",
-    ]
-    return " ".join(parts).lower()
+def _val(row: pd.Series, key: str, default: str = "") -> str:
+    v = row.get(key, default)
+    if v is None or (isinstance(v, float) and pd.isna(v)):
+        return default
+    return str(v)
 
 
-def extract_tags(raw: dict) -> list[str]:
-    """Pick known tech tags out of the title + description."""
-    blob = _text_blob(raw)
+def extract_tags(text: str) -> list[str]:
+    blob = text.lower()
     found: list[str] = []
     for tag in TAG_VOCAB:
-        needle = tag.lower()
-        if needle in blob and tag not in found:
-            # Normalise a couple of synonyms.
+        if tag.lower() in blob:
             label = "Kubernetes" if tag == "K8s" else tag
             if label not in found:
                 found.append(label)
     return found
 
 
-def format_location(raw: dict) -> str:
-    bits = [raw.get("job_city"), raw.get("job_state"), raw.get("job_country")]
-    loc = ", ".join(b for b in bits if b)
-    if raw.get("job_is_remote"):
-        loc = f"{loc} (Remote)" if loc else "Remote"
-    return loc or "Location not specified"
-
-
-def format_salary(raw: dict) -> str | None:
-    lo, hi = raw.get("job_min_salary"), raw.get("job_max_salary")
-    cur = raw.get("job_salary_currency") or ""
-    period = raw.get("job_salary_period") or ""
-    if lo and hi:
-        return f"{cur} {int(lo):,}–{int(hi):,} {period}".strip()
-    if lo:
-        return f"{cur} {int(lo):,}+ {period}".strip()
+def format_salary(row: pd.Series) -> str | None:
+    lo, hi = row.get("min_amount"), row.get("max_amount")
+    cur = _val(row, "currency")
+    interval = _val(row, "interval")
+    has_lo = lo is not None and not pd.isna(lo)
+    has_hi = hi is not None and not pd.isna(hi)
+    if has_lo and has_hi:
+        return f"{cur} {int(lo):,}–{int(hi):,} {interval}".strip()
+    if has_lo:
+        return f"{cur} {int(lo):,}+ {interval}".strip()
     return None
 
 
-def has_relocation_signal(raw: dict) -> bool:
-    blob = _text_blob(raw)
-    return any(kw in blob for kw in RELOCATION_KEYWORDS)
-
-
-def normalise(raw: dict, *, category: str, relocation: bool) -> dict:
-    """Map a JSearch record to the card shape used by index.html."""
+def normalise(row: pd.Series, *, category: str, relocation: bool) -> dict:
+    title = _val(row, "title", "Untitled role")
+    desc = _val(row, "description")
+    location = _val(row, "location") or ("Remote" if row.get("is_remote") else "Location not specified")
     return {
         "category": category,
-        "title": raw.get("job_title", "Untitled role"),
-        "company": raw.get("employer_name", "Unknown company"),
-        "location": format_location(raw),
-        "salary": format_salary(raw),
-        "url": raw.get("job_apply_link") or raw.get("job_google_link") or "#",
+        "title": title,
+        "company": _val(row, "company", "Unknown company"),
+        "location": location,
+        "salary": format_salary(row),
+        "url": _val(row, "job_url_direct") or _val(row, "job_url") or "#",
         "relocation": relocation,
-        "tags": extract_tags(raw),
-        # internal key, stripped before output — used for de-duplication
-        "_id": raw.get("job_id"),
+        "tags": extract_tags(f"{title} {desc}"),
+        "_id": _val(row, "id") or _val(row, "job_url"),
     }
+
+
+def has_visa_signal(row: pd.Series) -> bool:
+    blob = f"{_val(row, 'title')} {_val(row, 'description')}".lower()
+    return any(kw in blob for kw in VISA_KEYWORDS)
 
 
 # --------------------------------------------------------------------------- #
@@ -178,7 +174,6 @@ def normalise(raw: dict, *, category: str, relocation: bool) -> dict:
 # --------------------------------------------------------------------------- #
 
 def dedupe(jobs: list[dict]) -> list[dict]:
-    """Remove duplicates by job id, falling back to (title, company, location)."""
     seen: set = set()
     unique: list[dict] = []
     for job in jobs:
@@ -199,30 +194,32 @@ def dedupe(jobs: list[dict]) -> list[dict]:
 # --------------------------------------------------------------------------- #
 
 def fetch_sri_lanka() -> list[dict]:
-    print("Query 1 — Sri Lanka roles")
+    print("Pass 1 — Sri Lanka (LinkedIn + Google Jobs)")
     collected: list[dict] = []
     for role in ROLES:
-        query = f"{role} in Sri Lanka"
-        print(f"  · {query}")
-        for raw in search_jobs(query, num_pages=PAGES_PER_QUERY, country="lk"):
-            collected.append(normalise(raw, category="sri-lanka", relocation=False))
-        time.sleep(REQUEST_PAUSE_SECONDS)
+        df = safe_scrape(
+            search_term=role,
+            google_search_term=f"{role} jobs in Sri Lanka",
+            location="Sri Lanka",
+        )
+        for _, row in df.iterrows():
+            collected.append(normalise(row, category="sri-lanka", relocation=False))
     return collected
 
 
 def fetch_international() -> list[dict]:
-    print("Query 2 — International roles (visa / relocation)")
+    print("Pass 2 — International (visa sponsorship)")
     collected: list[dict] = []
     for role in ROLES:
-        # Bias the query toward relocation-friendly postings, then verify
-        # against the description before keeping a result.
-        query = f"{role} visa sponsorship relocation"
-        print(f"  · {query}")
-        for raw in search_jobs(query, num_pages=PAGES_PER_QUERY):
-            if not has_relocation_signal(raw):
+        df = safe_scrape(
+            search_term=f"{role} visa sponsorship",
+            google_search_term=f"{role} jobs with visa sponsorship",
+            location=None,  # global
+        )
+        for _, row in df.iterrows():
+            if not has_visa_signal(row):
                 continue
-            collected.append(normalise(raw, category="international", relocation=True))
-        time.sleep(REQUEST_PAUSE_SECONDS)
+            collected.append(normalise(row, category="international", relocation=True))
     return collected
 
 
@@ -232,25 +229,33 @@ def strip_internal(jobs: list[dict]) -> list[dict]:
     return jobs
 
 
+def write_output(jobs: list[dict]) -> None:
+    output = {"updated": dt.date.today().isoformat(), "jobs": jobs}
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n")
+
+
 def main() -> int:
     sri_lanka = dedupe(fetch_sri_lanka())
     international = dedupe(fetch_international())
 
-    # Guard against a Sri Lankan role leaking into the international bucket
-    # (and vice versa) when both queries return the same posting.
+    # Keep a posting in only one bucket if it surfaced in both passes.
     sl_ids = {j.get("_id") for j in sri_lanka if j.get("_id")}
     international = [j for j in international if j.get("_id") not in sl_ids]
 
     combined = strip_internal(sri_lanka + international)
 
-    output = {
-        "updated": dt.date.today().isoformat(),
-        "jobs": combined,
-    }
+    if not combined:
+        # Every source was throttled / empty. Don't overwrite a good jobs.json
+        # with an empty list — leave the live site intact and signal failure.
+        print(
+            "\nNo jobs scraped (all sources throttled or empty). "
+            "Leaving existing jobs.json unchanged.",
+            file=sys.stderr,
+        )
+        return 1
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n")
-
+    write_output(combined)
     print(
         f"\nWrote {len(combined)} roles "
         f"({len(sri_lanka)} Sri Lanka, {len(international)} international) "
