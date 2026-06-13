@@ -543,28 +543,33 @@
     },
     {
       "category": "international",
-      "title": "AWS Cloud Systems Engineer",
-      "company": "Pelham Berkeley Search",
+      "title": "Senior DevOps Engineer",
+      "company": "Envestnet",
       "location": "Location not specified",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4404885951",
+      "url": "https://www.linkedin.com/jobs/view/4343128980",
       "relocation": true,
       "tags": [
         "DevOps",
-        "Cloud",
         "AWS",
         "Azure",
+        "Kubernetes",
         "Terraform",
-        "Go"
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Python",
+        "Go",
+        "Helm"
       ]
     },
     {
       "category": "international",
-      "title": "Senior Cloud Engineer",
-      "company": "ESG",
-      "location": "Norwell, MA",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4418007631",
+      "title": "Infrastructure Engineer, Sandboxing",
+      "company": "Anthropic",
+      "location": "Seattle, WA",
+      "salary": "USD 300,000–405,000 yearly",
+      "url": "https://www.linkedin.com/jobs/view/4326786805",
       "relocation": true,
       "tags": [
         "DevOps",
@@ -573,15 +578,119 @@
         "Azure",
         "GCP",
         "Kubernetes",
+        "Docker",
+        "Platform",
+        "Python",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Infrastructure Engineer, Sandboxing",
+      "company": "Anthropic",
+      "location": "New York, NY",
+      "salary": "USD 300,000–405,000 yearly",
+      "url": "https://www.linkedin.com/jobs/view/4326747850",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "Platform",
+        "Python",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Member of Technical Staff, Supercomputing Platform & Infrastructure",
+      "company": "Magic",
+      "location": "San Francisco, CA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4315975693",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Cloud Ops Engineer",
+      "company": "Markel",
+      "location": "Richmond, VA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4418180248",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Python",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "DevOps Engineer",
+      "company": "FordDirect",
+      "location": "Dearborn, MI",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4417448821",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Kubernetes",
         "Terraform",
         "Ansible",
         "Docker",
         "CI/CD",
         "Platform",
-        "Python",
         "Go",
-        "Linux",
         "Jenkins"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "DevOps Engineer-1",
+      "company": "KeyBank",
+      "location": "Brooklyn, OH",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4414705760",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "Platform",
+        "Python",
+        "Go"
       ]
     }
   ]
