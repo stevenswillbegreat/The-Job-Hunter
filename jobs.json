@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20",
+  "updated": "2026-06-21",
   "jobs": [
     {
       "category": "sri-lanka",
@@ -48,28 +48,6 @@
     },
     {
       "category": "sri-lanka",
-      "title": "Senior DevOps Engineer | Colombo, LK",
-      "company": "London Stock Exchange Group",
-      "location": "Colombo, LK",
-      "salary": null,
-      "url": "https://www.efinancialcareers.com/jobs-Sri_Lanka-Colombo-Senior_DevOps_Engineer.id24412324",
-      "relocation": false,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
-        "Kubernetes",
-        "Terraform",
-        "Ansible",
-        "CI/CD",
-        "Python",
-        "Go",
-        "Linux",
-        "Jenkins"
-      ]
-    },
-    {
-      "category": "sri-lanka",
       "title": "Associate Lead DevOps Engineer | Colombo, LK",
       "company": "London Stock Exchange Group",
       "location": "Colombo, LK",
@@ -89,11 +67,34 @@
     },
     {
       "category": "sri-lanka",
-      "title": "Architect - DevOps",
-      "company": "Sysco LABS Sri Lanka",
+      "title": "DevOps Specialist",
+      "company": "Enactor",
       "location": "Colombo, LK",
       "salary": null,
-      "url": "https://lk.linkedin.com/jobs/view/architect-devops-at-sysco-labs-sri-lanka-4426719583",
+      "url": "https://lk.linkedin.com/jobs/view/devops-specialist-at-enactor-4425579865",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Go",
+        "Linux",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Senior DevOps Engineer | Colombo, LK",
+      "company": "London Stock Exchange Group",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://www.efinancialcareers.com/jobs-Sri_Lanka-Colombo-Senior_DevOps_Engineer.id24412324",
       "relocation": false,
       "tags": [
         "DevOps",
@@ -102,32 +103,10 @@
         "Kubernetes",
         "Terraform",
         "Ansible",
-        "Platform",
-        "Go"
-      ]
-    },
-    {
-      "category": "sri-lanka",
-      "title": "Specialist, DevOps & SRE",
-      "company": "Candidate Experience site",
-      "location": "LK",
-      "salary": null,
-      "url": "https://hccz.fa.em3.oraclecloud.com/hcmUI/CandidateExperience/en/job/24509?utm_medium=search+engine&utm_source=google",
-      "relocation": false,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
-        "Azure",
-        "GCP",
-        "Kubernetes",
-        "Terraform",
-        "Docker",
         "CI/CD",
-        "SRE",
-        "Platform",
         "Python",
         "Go",
+        "Linux",
         "Jenkins"
       ]
     },
@@ -155,6 +134,22 @@
     },
     {
       "category": "sri-lanka",
+      "title": "Devops & IT Infrastucture Engineer | Nawam Mawatha, Colombo 02",
+      "company": "Victory Company (Igaming BPO)",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://xpress.jobs/Jobs/View/296799",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "CI/CD",
+        "Platform",
+        "Linux"
+      ]
+    },
+    {
+      "category": "sri-lanka",
       "title": "Senior DevOps Engineer / Associate DevOps Lead",
       "company": "Cambio Sri Lanka",
       "location": "Colombo, LK",
@@ -178,14 +173,21 @@
     },
     {
       "category": "sri-lanka",
-      "title": "DevOps Engineer",
-      "company": "Evoke Labs (Pvt) Ltd",
-      "location": "Dehiwala-Mount Lavinia, LK",
+      "title": "Architect - DevOps",
+      "company": "Sysco LABS Sri Lanka",
+      "location": "Colombo, LK",
       "salary": null,
-      "url": "https://www.topjobs.lk/vacancy?ac=DEFZZZ&jc=0001512573&ec=DEFZZZ&index=3&rid=0&pg=applicant/vacancyDetails.jsp",
+      "url": "https://lk.linkedin.com/jobs/view/architect-devops-at-sysco-labs-sri-lanka-4426719583",
       "relocation": false,
       "tags": [
-        "DevOps"
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Platform",
+        "Go"
       ]
     },
     {
@@ -218,6 +220,20 @@
       "tags": [
         "Cloud",
         "AWS",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Track Engineer",
+      "company": "Zega OneBit",
+      "location": "LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/track-engineer-at-zega-onebit-4430343086",
+      "relocation": false,
+      "tags": [
+        "Cloud",
         "Platform",
         "Go"
       ]
@@ -284,6 +300,23 @@
     },
     {
       "category": "sri-lanka",
+      "title": "Backend & Platform Engineer",
+      "company": "MO Marketplace",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://itpro.lk/job/13937/backend-platform-engineer-at-mo-marketplace/",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "GCP",
+        "CI/CD",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "sri-lanka",
       "title": "Senior Engineer - Infrastructure",
       "company": "Millennium IT ESP",
       "location": "Colombo, LK",
@@ -307,45 +340,43 @@
     },
     {
       "category": "sri-lanka",
-      "title": "Backend & Platform Engineer",
-      "company": "MO Marketplace",
+      "title": "Principal Platform Engineer – Database",
+      "company": "IFS",
       "location": "Colombo, LK",
       "salary": null,
-      "url": "https://itpro.lk/job/13937/backend-platform-engineer-at-mo-marketplace/",
+      "url": "https://gaurajobs.lk/job/principal-platform-engineer-database/",
+      "relocation": false,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Python",
+        "Go",
+        "GitOps"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Azure Infrastructure Engineer",
+      "company": "Growthprof",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://lk.linkedin.com/jobs/view/azure-infrastructure-engineer-at-growthprof-4424183239",
       "relocation": false,
       "tags": [
         "DevOps",
         "Cloud",
-        "GCP",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
         "CI/CD",
         "Platform",
-        "Go"
-      ]
-    },
-    {
-      "category": "sri-lanka",
-      "title": "Senior Software Engineer - MuleSoft (EC-49)",
-      "company": "Eyepax",
-      "location": "Colombo, LK",
-      "salary": null,
-      "url": "https://lk.linkedin.com/jobs/view/senior-software-engineer-mulesoft-ec-49-at-eyepax-4429909363",
-      "relocation": false,
-      "tags": [
-        "Cloud",
-        "Platform",
-        "Go"
-      ]
-    },
-    {
-      "category": "sri-lanka",
-      "title": "CLOUD ENGINEER – L1",
-      "company": "OREL IT",
-      "location": "Colombo, LK",
-      "salary": null,
-      "url": "https://lk.linkedin.com/jobs/view/cloud-engineer-%E2%80%93-l1-at-orel-it-4426955789",
-      "relocation": false,
-      "tags": [
-        "Cloud",
         "Go"
       ]
     },
@@ -386,38 +417,6 @@
     },
     {
       "category": "sri-lanka",
-      "title": "Azure Infrastructure Engineer",
-      "company": "Growthprof",
-      "location": "Colombo, LK",
-      "salary": null,
-      "url": "https://lk.linkedin.com/jobs/view/azure-infrastructure-engineer-at-growthprof-4424183239",
-      "relocation": false,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "Azure",
-        "Kubernetes",
-        "Terraform",
-        "CI/CD",
-        "Platform",
-        "Go"
-      ]
-    },
-    {
-      "category": "sri-lanka",
-      "title": "Cloud Engineer - Microsoft Azure Infrastructure",
-      "company": "Elevate Solutions (Pvt) Ltd",
-      "location": "Colombo, LK",
-      "salary": null,
-      "url": "http://www.topjobs.lk/vacancy?ac=DEFZZZ&jc=0001509617&ec=DEFZZZ&index=82&rid=0&pg=applicant/vacancyDetails.jsp",
-      "relocation": false,
-      "tags": [
-        "Cloud",
-        "Azure"
-      ]
-    },
-    {
-      "category": "sri-lanka",
       "title": "Senior Site Reliability Engineer (SRE)",
       "company": "CAREER141",
       "location": "Colombo, LK",
@@ -438,47 +437,43 @@
       ]
     },
     {
-      "category": "international",
-      "title": "Senior Site Reliability Engineer",
-      "company": "Berkley Hunt",
-      "location": "New York, NY",
-      "salary": "USD 140,000–170,000 yearly",
-      "url": "https://www.linkedin.com/jobs/view/4430491492",
-      "relocation": true,
-      "tags": [
-        "Cloud",
-        "AWS",
-        "GCP",
-        "Kubernetes",
-        "Terraform",
-        "Ansible",
-        "Platform",
-        "Python",
-        "Go",
-        "Linux",
-        "GitOps",
-        "Helm"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "DevOps Engineer",
-      "company": "Infosys",
-      "location": "Plano, TX",
+      "category": "sri-lanka",
+      "title": "AWS DevOps Engineer",
+      "company": "HCLTech Sri Lanka",
+      "location": "Colombo, LK",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4428261456",
-      "relocation": true,
+      "url": "https://lk.linkedin.com/jobs/view/aws-devops-engineer-at-hcltech-sri-lanka-4415612026",
+      "relocation": false,
       "tags": [
         "DevOps",
         "Cloud",
         "AWS",
         "Kubernetes",
         "Terraform",
+        "CI/CD",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "sri-lanka",
+      "title": "Intern - Cloud Engineering",
+      "company": "Axiata Digital Labs",
+      "location": "Colombo, LK",
+      "salary": null,
+      "url": "https://www.careers-page.com/axiata-digital-labs/job/W35RVXWW",
+      "relocation": false,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "GCP",
+        "Kubernetes",
         "Docker",
         "CI/CD",
+        "SRE",
         "Platform",
         "Python",
-        "Jenkins"
+        "Go"
       ]
     },
     {
@@ -500,52 +495,25 @@
     },
     {
       "category": "international",
-      "title": "Sr. DevOps Engineer",
-      "company": "Symetra",
-      "location": "Remote",
+      "title": "DevOps Engineer II - Digital Assets",
+      "company": "Early Warning",
+      "location": "San Francisco, CA",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4419912288",
+      "url": "https://www.linkedin.com/jobs/view/4420458478",
       "relocation": true,
       "tags": [
         "DevOps",
         "Cloud",
         "AWS",
         "Azure",
-        "CI/CD",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
         "Platform",
-        "Go"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "DevOps Engineer",
-      "company": "AARATECH",
-      "location": "Location not specified",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4428491545",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
+        "Go",
         "Linux"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "DevOps Engineer",
-      "company": "TEKsystems",
-      "location": "Mitchell, SD",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4429207734",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "Azure",
-        "CI/CD",
-        "Platform",
-        "Python"
       ]
     },
     {
@@ -568,70 +536,6 @@
         "Python",
         "Go",
         "Linux"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "AWS Cloud Systems Engineer",
-      "company": "Pelham Berkeley Search",
-      "location": "Location not specified",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4404885951",
-      "relocation": true,
-      "tags": [
-        "Cloud",
-        "AWS",
-        "Azure",
-        "Terraform",
-        "Go"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Senior DevOps Engineer",
-      "company": "AMD",
-      "location": "Austin, TX",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4399071236",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
-        "Azure",
-        "GCP",
-        "Kubernetes",
-        "Terraform",
-        "Ansible",
-        "Docker",
-        "CI/CD",
-        "Platform",
-        "Python",
-        "Go",
-        "Linux",
-        "Jenkins",
-        "GitOps",
-        "Helm"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Jr DevOps Engineer",
-      "company": "The Patrick J. McGovern Foundation",
-      "location": "Remote",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4404704093",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
-        "Terraform",
-        "Docker",
-        "CI/CD",
-        "Platform",
-        "Python",
-        "Go"
       ]
     },
     {
@@ -681,29 +585,6 @@
     },
     {
       "category": "international",
-      "title": "Junior Cloud DevOps Engineer",
-      "company": "Guidehouse",
-      "location": "Washington, DC",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4425637501",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
-        "Azure",
-        "Kubernetes",
-        "Terraform",
-        "Ansible",
-        "Docker",
-        "CI/CD",
-        "Platform",
-        "Python",
-        "Linux"
-      ]
-    },
-    {
-      "category": "international",
       "title": "Senior DevOps Engineer",
       "company": "Minitab",
       "location": "State College, PA",
@@ -749,28 +630,6 @@
       "category": "international",
       "title": "Senior DevOps Engineer",
       "company": "Envestnet",
-      "location": "Location not specified",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4343128980",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "AWS",
-        "Azure",
-        "Kubernetes",
-        "Terraform",
-        "CI/CD",
-        "SRE",
-        "Platform",
-        "Python",
-        "Go",
-        "Helm"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Senior DevOps Engineer",
-      "company": "Envestnet",
       "location": "Berwyn, PA",
       "salary": null,
       "url": "https://www.linkedin.com/jobs/view/4343119013",
@@ -791,21 +650,36 @@
     },
     {
       "category": "international",
-      "title": "Senior AWS Cloud Engineer",
-      "company": "Raymond James",
-      "location": "Denver, CO",
+      "title": "Site Reliability / Infrastructure Engineer",
+      "company": "DensityAI",
+      "location": "Mountain View, CA",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4410303613",
+      "url": "https://www.linkedin.com/jobs/view/4424227932",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "CI/CD",
+        "SRE",
+        "Platform"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Cloud Engineer",
+      "company": "RapDev",
+      "location": "Boston, MA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4419861387",
       "relocation": true,
       "tags": [
         "DevOps",
         "Cloud",
-        "AWS",
-        "Azure",
-        "Kubernetes",
-        "Terraform",
-        "Docker",
-        "CI/CD",
+        "SRE",
         "Platform",
         "Python",
         "Go",
@@ -814,19 +688,16 @@
     },
     {
       "category": "international",
-      "title": "Platform DevOps Engineer",
-      "company": "PVcase",
-      "location": "Remote",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4420969765",
+      "title": "Site Reliability Engineer",
+      "company": "Thinking Machines Lab",
+      "location": "Location not specified",
+      "salary": "USD 350,000–475,000 yearly",
+      "url": "https://www.linkedin.com/jobs/view/4419976531",
       "relocation": true,
       "tags": [
-        "DevOps",
         "Cloud",
-        "AWS",
         "Kubernetes",
-        "Terraform",
-        "Docker",
+        "CI/CD",
         "Platform",
         "Go"
       ]
@@ -856,18 +727,89 @@
     },
     {
       "category": "international",
-      "title": "Software Engineer, Cloud Platform",
-      "company": "Taco Bell",
-      "location": "Irvine, CA",
+      "title": "DevOps Engineer ( 4 Positions - U.S. Citizen or GC Holders Only)",
+      "company": "Objectways",
+      "location": "Scottsdale, AZ",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4427395695",
+      "url": "https://www.linkedin.com/jobs/view/4430330018",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Go",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Founding Engineer",
+      "company": "Venture Up",
+      "location": "San Francisco, CA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4430987082",
       "relocation": true,
       "tags": [
         "Cloud",
         "AWS",
-        "SRE",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "Platform"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Member of Technical Staff, Supercomputing Platform & Infrastructure",
+      "company": "Magic",
+      "location": "San Francisco, CA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4315975693",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Terraform",
         "Platform",
         "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Enterprise Engineer",
+      "company": "Cartesia",
+      "location": "San Francisco, CA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4358945479",
+      "relocation": true,
+      "tags": [
+        "Platform",
+        "Python",
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Software Engineer, Infrastructure [33020]",
+      "company": "Stealth Startup",
+      "location": "New York, NY",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4430435098",
+      "relocation": true,
+      "tags": [
+        "Cloud"
       ]
     },
     {
@@ -885,55 +827,108 @@
     },
     {
       "category": "international",
-      "title": "Software Engineer, iOS/Mobile - Health Wearable",
-      "company": "Beacon AI",
-      "location": "San Carlos, CA",
+      "title": "DevOps Engineer",
+      "company": "AARATECH",
+      "location": "Location not specified",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4429160267",
+      "url": "https://www.linkedin.com/jobs/view/4428491545",
       "relocation": true,
       "tags": [
+        "DevOps",
         "Cloud",
         "AWS",
-        "CI/CD",
-        "Platform"
+        "Linux"
       ]
     },
     {
       "category": "international",
-      "title": "Software Engineer, Platform",
+      "title": "Software Engineer, Infrastructure",
       "company": "Aaru",
       "location": "New York, NY",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4428302400",
+      "url": "https://www.linkedin.com/jobs/view/4428695922",
       "relocation": true,
       "tags": [
-        "Platform",
-        "Go"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Frontend Software Engineer",
-      "company": "Addepar",
-      "location": "Mountain View, CA",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4409036657",
-      "relocation": true,
-      "tags": [
+        "Cloud",
         "Platform"
       ]
     },
     {
       "category": "international",
-      "title": "Research Engineer, Data Infrastructure",
-      "company": "Mistral",
-      "location": "New York, United States",
+      "title": "AWS Cloud Systems Engineer",
+      "company": "Pelham Berkeley Search",
+      "location": "Location not specified",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4428108132",
+      "url": "https://www.linkedin.com/jobs/view/4404885951",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Terraform",
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Senior Software Engineer",
+      "company": "StratusGrid",
+      "location": "Tennessee, United States",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4373023261",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Senior Software Engineer (UI)",
+      "company": "Siepe",
+      "location": "Dallas, TX",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4373604241",
+      "relocation": true,
+      "tags": [
+        "Platform",
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Software Engineer 2",
+      "company": "eBay",
+      "location": "Austin, TX",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4414364879",
       "relocation": true,
       "tags": [
         "Cloud",
         "Kubernetes",
+        "Docker",
+        "CI/CD",
+        "SRE",
+        "Platform"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Software Engineer II, Cloud Infrastructure - Slack",
+      "company": "Slack",
+      "location": "Washington, DC",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4417771374",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Terraform",
+        "SRE",
         "Platform",
         "Python",
         "Go"
@@ -941,44 +936,42 @@
     },
     {
       "category": "international",
-      "title": "Staff+ Software Engineer, Platform",
-      "company": "Anthropic",
-      "location": "New York, NY",
-      "salary": "USD 405,000–485,000 yearly",
-      "url": "https://www.linkedin.com/jobs/view/4396346691",
+      "title": "Tooling Engineer",
+      "company": "San Francisco Compute Company",
+      "location": "San Francisco, CA",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4418860450",
       "relocation": true,
       "tags": [
-        "Cloud",
         "AWS",
-        "Azure",
-        "GCP",
         "Kubernetes",
+        "Terraform",
         "CI/CD",
         "Platform",
-        "Python",
         "Go",
-        "Linux"
+        "Helm"
       ]
     },
     {
       "category": "international",
-      "title": "Staff+ Software Engineer, Platform",
-      "company": "Anthropic",
-      "location": "San Francisco, CA",
-      "salary": "USD 405,000–485,000 yearly",
-      "url": "https://www.linkedin.com/jobs/view/4396343772",
+      "title": "Azure Engineer",
+      "company": "TriCom Technical Services",
+      "location": "Leawood, KS",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4427675066",
       "relocation": true,
       "tags": [
+        "DevOps",
         "Cloud",
         "AWS",
         "Azure",
-        "GCP",
         "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
         "CI/CD",
-        "Platform",
         "Python",
-        "Go",
-        "Linux"
+        "Go"
       ]
     },
     {
@@ -1041,11 +1034,32 @@
     },
     {
       "category": "international",
-      "title": "Platform Engineer",
-      "company": "AssetMark",
-      "location": "Concord, CA",
+      "title": "Senior Platform & Reliability Engineer",
+      "company": "OpenArt AI",
+      "location": "San Francisco, CA",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4424132451",
+      "url": "https://www.linkedin.com/jobs/view/4424162437",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "GCP",
+        "Kubernetes",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Python",
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Platform Software Engineer",
+      "company": "AssetMark",
+      "location": "Charlotte, NC",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4414941430",
       "relocation": true,
       "tags": [
         "DevOps",
@@ -1063,38 +1077,15 @@
     },
     {
       "category": "international",
-      "title": "Platform Engineer",
-      "company": "Aspiron Search",
-      "location": "Brooklyn, NY",
+      "title": "Software Development Engineer, AI Assistant Team",
+      "company": "Amadeus",
+      "location": "New York, United States",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4422431733",
+      "url": "https://www.linkedin.com/jobs/view/4424595314",
       "relocation": true,
       "tags": [
-        "DevOps",
         "Cloud",
-        "AWS",
-        "Azure",
-        "GCP",
-        "Kubernetes",
-        "Terraform",
         "CI/CD",
-        "Platform",
-        "Go",
-        "Linux",
-        "Jenkins"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Software Engineer - Workflow Platform",
-      "company": "Addepar",
-      "location": "Mountain View, CA",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4412155298",
-      "relocation": true,
-      "tags": [
-        "Cloud",
-        "AWS",
         "Platform",
         "Python",
         "Go"
@@ -1102,46 +1093,51 @@
     },
     {
       "category": "international",
-      "title": "Software Engineer",
-      "company": "Artie",
-      "location": "San Francisco, CA",
-      "salary": "USD 150,000–300,000 yearly",
-      "url": "https://www.linkedin.com/jobs/view/4417976234",
+      "title": "Sr. Software Engineer - AI/ML - AI Platform",
+      "company": "Addepar",
+      "location": "Remote",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4393234536",
       "relocation": true,
       "tags": [
         "AWS",
-        "GCP",
         "Kubernetes",
-        "Terraform",
         "Platform",
-        "Go",
-        "Helm"
+        "Python",
+        "Go"
       ]
     },
     {
       "category": "international",
-      "title": "Cloud Operations Engineer",
-      "company": "O'Reilly",
+      "title": "Software Engineer Systems Generalist",
+      "company": "Thinking Machines Lab",
       "location": "Location not specified",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4408881110",
+      "url": "https://www.linkedin.com/jobs/view/4419993229",
       "relocation": true,
       "tags": [
-        "Cloud",
-        "AWS",
-        "Azure",
-        "GCP",
         "Kubernetes",
-        "Terraform",
-        "Ansible",
-        "CI/CD",
-        "SRE",
         "Platform",
         "Python",
-        "Go",
-        "Linux",
-        "Jenkins",
-        "GitOps"
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Cloud Architect",
+      "company": "Galaxi Consulting Group",
+      "location": "Houston, TX",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4431332716",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "CI/CD",
+        "Platform"
       ]
     },
     {
@@ -1170,6 +1166,27 @@
     },
     {
       "category": "international",
+      "title": "DevOps Engineer",
+      "company": "Infosys",
+      "location": "Plano, TX",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4428261456",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Jenkins"
+      ]
+    },
+    {
+      "category": "international",
       "title": "Cloud Admin",
       "company": "Zensar Technologies",
       "location": "Dallas, TX",
@@ -1188,23 +1205,32 @@
     },
     {
       "category": "international",
-      "title": "Software Engineer, Infrastructure [33020]",
-      "company": "Stealth Startup",
-      "location": "New York, NY",
+      "title": "Cloud Developer",
+      "company": "MSR Technology Group",
+      "location": "Atlanta, GA",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4430435098",
+      "url": "https://www.linkedin.com/jobs/view/4429332375",
       "relocation": true,
       "tags": [
-        "Cloud"
+        "DevOps",
+        "Cloud",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Go"
       ]
     },
     {
       "category": "international",
-      "title": "Azure Engineer",
-      "company": "TriCom Technical Services",
-      "location": "Leawood, KS",
+      "title": "Senior AWS Cloud Engineer",
+      "company": "Raymond James",
+      "location": "St. Petersburg, FL",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4427675066",
+      "url": "https://www.linkedin.com/jobs/view/4410198751",
       "relocation": true,
       "tags": [
         "DevOps",
@@ -1213,26 +1239,35 @@
         "Azure",
         "Kubernetes",
         "Terraform",
-        "Ansible",
         "Docker",
         "CI/CD",
+        "Platform",
         "Python",
-        "Go"
+        "Go",
+        "Linux"
       ]
     },
     {
       "category": "international",
-      "title": "Cloud Security Engineer",
-      "company": "East West Bank",
-      "location": "Dallas, TX",
+      "title": "Platform Engineer",
+      "company": "Aspiron Search",
+      "location": "Brooklyn, NY",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4409254699",
+      "url": "https://www.linkedin.com/jobs/view/4422431733",
       "relocation": true,
       "tags": [
+        "DevOps",
         "Cloud",
         "AWS",
         "Azure",
-        "Platform"
+        "GCP",
+        "Kubernetes",
+        "Terraform",
+        "CI/CD",
+        "Platform",
+        "Go",
+        "Linux",
+        "Jenkins"
       ]
     }
   ]
