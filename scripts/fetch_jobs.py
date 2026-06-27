@@ -62,6 +62,28 @@ RESULTS_PER_SEARCH = 25
 HOURS_OLD = 720  # last 30 days
 PROXIES = [p.strip() for p in os.environ.get("JOBSPY_PROXIES", "").split(",") if p.strip()] or None
 
+# Locations to scrape for the international pass. Without a location, jobspy's
+# LinkedIn scraper defaults to US-centric results, so European visa-sponsor
+# roles never surface. We target the broad EU + UK tech hubs that actually
+# sponsor work visas, plus an empty location for the original global/US pass.
+# Override via INTL_LOCATIONS (comma-separated) if you want a different set.
+DEFAULT_INTL_LOCATIONS = [
+    "",  # global / US default — preserves the original behaviour
+    "Germany",
+    "Netherlands",
+    "Ireland",
+    "Sweden",
+    "United Kingdom",
+    "Switzerland",
+    "Denmark",
+    "Poland",
+    "Spain",
+]
+INTL_LOCATIONS = [
+    loc.strip()
+    for loc in os.environ.get("INTL_LOCATIONS", ",".join(DEFAULT_INTL_LOCATIONS)).split(",")
+] or DEFAULT_INTL_LOCATIONS
+
 VISA_KEYWORDS = [
     "visa sponsorship", "visa sponsor", "sponsor visa", "sponsorship available",
     "will sponsor", "relocation assistance", "relocation package", "work permit",
@@ -167,12 +189,14 @@ def fetch_sri_lanka() -> list[dict]:
 # International pass — jobspy / LinkedIn
 # --------------------------------------------------------------------------- #
 
-def safe_scrape(*, search_term: str, google_search_term: str) -> pd.DataFrame:
+def safe_scrape(*, search_term: str, google_search_term: str, location: str = "") -> pd.DataFrame:
+    where = location or "global"
     try:
         df = scrape_jobs(
             site_name=INTL_SITES,
             search_term=search_term,
             google_search_term=google_search_term,
+            location=location or None,
             results_wanted=RESULTS_PER_SEARCH,
             hours_old=HOURS_OLD,
             linkedin_fetch_description=True,
@@ -180,12 +204,12 @@ def safe_scrape(*, search_term: str, google_search_term: str) -> pd.DataFrame:
             verbose=0,
         )
         if df is None or df.empty:
-            print(f"  · no results for {search_term!r} (global)")
+            print(f"  · no results for {search_term!r} ({where})")
             return pd.DataFrame()
-        print(f"  · {len(df):>3} rows for {search_term!r} (global)")
+        print(f"  · {len(df):>3} rows for {search_term!r} ({where})")
         return df
     except Exception as exc:  # noqa: BLE001 - throttling must not crash CI
-        print(f"  ! scrape failed for {search_term!r}: {type(exc).__name__}: {exc}", file=sys.stderr)
+        print(f"  ! scrape failed for {search_term!r} ({where}): {type(exc).__name__}: {exc}", file=sys.stderr)
         return pd.DataFrame()
 
 
@@ -227,15 +251,18 @@ def normalise_jobspy(row: pd.Series) -> dict:
 
 def fetch_international() -> list[dict]:
     print("Pass 2 — International (LinkedIn, visa sponsorship)")
+    print(f"  locations: {', '.join(loc or 'global' for loc in INTL_LOCATIONS)}")
     collected: list[dict] = []
-    for role in ROLES:
-        df = safe_scrape(
-            search_term=f"{role} visa sponsorship",
-            google_search_term=f"{role} jobs with visa sponsorship",
-        )
-        for _, row in df.iterrows():
-            if has_visa_signal(row):
-                collected.append(normalise_jobspy(row))
+    for location in INTL_LOCATIONS:
+        for role in ROLES:
+            df = safe_scrape(
+                search_term=f"{role} visa sponsorship",
+                google_search_term=f"{role} jobs with visa sponsorship",
+                location=location,
+            )
+            for _, row in df.iterrows():
+                if has_visa_signal(row):
+                    collected.append(normalise_jobspy(row))
     return collected
 
 
