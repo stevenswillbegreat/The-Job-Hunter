@@ -63,12 +63,11 @@ HOURS_OLD = 720  # last 30 days
 PROXIES = [p.strip() for p in os.environ.get("JOBSPY_PROXIES", "").split(",") if p.strip()] or None
 
 # Locations to scrape for the international pass. Without a location, jobspy's
-# LinkedIn scraper defaults to US-centric results, so European visa-sponsor
-# roles never surface. We target the broad EU + UK tech hubs that actually
-# sponsor work visas, plus an empty location for the original global/US pass.
+# LinkedIn scraper defaults to US-centric results, so we target specific hubs
+# instead. US roles are explicitly excluded (see is_us_location); the targeted
+# set covers EU + UK plus the Gulf and South-East Asia visa-sponsor hubs.
 # Override via INTL_LOCATIONS (comma-separated) if you want a different set.
 DEFAULT_INTL_LOCATIONS = [
-    "",  # global / US default — preserves the original behaviour
     "Germany",
     "Netherlands",
     "Ireland",
@@ -78,6 +77,10 @@ DEFAULT_INTL_LOCATIONS = [
     "Denmark",
     "Poland",
     "Spain",
+    "United Arab Emirates",
+    "Qatar",
+    "Malaysia",
+    "Singapore",
 ]
 INTL_LOCATIONS = [
     loc.strip()
@@ -225,6 +228,26 @@ def has_visa_signal(row: pd.Series) -> bool:
     return any(kw in blob for kw in VISA_KEYWORDS)
 
 
+# US state codes used to detect "City, ST" style American locations.
+_US_STATES = {
+    "al", "ak", "az", "ar", "ca", "co", "ct", "de", "fl", "ga", "hi", "id",
+    "il", "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms",
+    "mo", "mt", "ne", "nv", "nh", "nj", "nm", "ny", "nc", "nd", "oh", "ok",
+    "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv",
+    "wi", "wy", "dc",
+}
+
+
+def is_us_location(location: str) -> bool:
+    """True if the location string looks American — so we can drop it."""
+    blob = location.lower()
+    if "united states" in blob or "usa" in blob or "u.s." in blob:
+        return True
+    # Trailing ", ST" (e.g. "Austin, TX") — a state code as the last segment.
+    tail = blob.replace(".", "").split(",")[-1].strip()
+    return tail in _US_STATES
+
+
 def normalise_jobspy(row: pd.Series) -> dict:
     title = _val(row, "title", "Untitled role")
     desc = _val(row, "description")
@@ -261,8 +284,12 @@ def fetch_international() -> list[dict]:
                 location=location,
             )
             for _, row in df.iterrows():
-                if has_visa_signal(row):
-                    collected.append(normalise_jobspy(row))
+                if not has_visa_signal(row):
+                    continue
+                job = normalise_jobspy(row)
+                if is_us_location(job["location"]):
+                    continue  # exclude American roles
+                collected.append(job)
     return collected
 
 
