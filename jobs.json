@@ -1,6 +1,24 @@
 {
-  "updated": "2026-08-07",
+  "updated": "2026-08-08",
   "jobs": [
+    {
+      "category": "international",
+      "title": "Site Reliability Engineer - Observability",
+      "company": "N26",
+      "location": "Berlin, Germany",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4424197049",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Terraform",
+        "Platform",
+        "Python",
+        "Go",
+        "Linux"
+      ]
+    },
     {
       "category": "international",
       "title": "Systems Engineer",
@@ -80,24 +98,6 @@
         "Linux",
         "GitOps",
         "Helm"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Site Reliability Engineer - Observability",
-      "company": "N26",
-      "location": "Berlin, Germany",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4424197049",
-      "relocation": true,
-      "tags": [
-        "Cloud",
-        "AWS",
-        "Terraform",
-        "Platform",
-        "Python",
-        "Go",
-        "Linux"
       ]
     },
     {
@@ -618,6 +618,28 @@
     },
     {
       "category": "international",
+      "title": "Site Reliability Engineer (Trade Support) – Front Office Trading Technology",
+      "company": "Bonhill Partners",
+      "location": "London Area, United Kingdom",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4450724444",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Kubernetes",
+        "Docker",
+        "CI/CD",
+        "SRE",
+        "Platform",
+        "Python",
+        "Linux"
+      ]
+    },
+    {
+      "category": "international",
       "title": "Staff+ Infrastructure Engineer, Cluster Infrastructure",
       "company": "Anthropic",
       "location": "Greater London, England, UK",
@@ -667,23 +689,11 @@
     },
     {
       "category": "international",
-      "title": "Backend Engineer, LONDON",
-      "company": "nsave",
+      "title": "Staff Infrastructure Engineer, Cluster Infrastructure",
+      "company": "SignalAI",
       "location": "London, England, UK",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4448285216",
-      "relocation": true,
-      "tags": [
-        "Platform"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Site Reliability Engineer (Trade Support) – Front Office Trading Technology",
-      "company": "Bonhill Partners",
-      "location": "London Area, United Kingdom",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4450724444",
+      "url": "https://www.linkedin.com/jobs/view/4447399370",
       "relocation": true,
       "tags": [
         "Cloud",
@@ -691,12 +701,10 @@
         "Azure",
         "GCP",
         "Kubernetes",
-        "Docker",
-        "CI/CD",
-        "SRE",
+        "Terraform",
         "Platform",
         "Python",
-        "Linux"
+        "Go"
       ]
     },
     {
@@ -711,6 +719,27 @@
         "Cloud",
         "Platform",
         "Python"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "HPC Engineer",
+      "company": "Viridien",
+      "location": "Crawley, England, UK",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4438778336",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Linux"
       ]
     },
     {
@@ -898,6 +927,29 @@
     },
     {
       "category": "international",
+      "title": "DevOps Engineer (m/f/d)",
+      "company": "TecAlliance",
+      "location": "Santa Cruz de Tenerife, Canary Islands, Spain",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4450012584",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Azure",
+        "Kubernetes",
+        "Terraform",
+        "Docker",
+        "CI/CD",
+        "Platform",
+        "Python",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "international",
       "title": "Site Reliability Engineer - Observability",
       "company": "N26",
       "location": "Barcelona, Catalonia, Spain",
@@ -938,25 +990,37 @@
     },
     {
       "category": "international",
-      "title": "DevOps Engineer (m/f/d)",
-      "company": "TecAlliance",
-      "location": "Santa Cruz de Tenerife, Canary Islands, Spain",
+      "title": "Senior Site Reliability Engineer (SRE & Platform Reliability)",
+      "company": "Affirm",
+      "location": "Remote",
       "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4450012584",
+      "url": "https://www.linkedin.com/jobs/view/4450747707",
       "relocation": true,
       "tags": [
-        "DevOps",
-        "Cloud",
         "AWS",
-        "Azure",
         "Kubernetes",
-        "Terraform",
-        "Docker",
-        "CI/CD",
+        "SRE",
         "Platform",
         "Python",
-        "Go",
-        "Linux"
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Senior Platform Engineer (Reliability) - Unannounced Project",
+      "company": "Scopely",
+      "location": "Remote",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4446280859",
+      "relocation": true,
+      "tags": [
+        "Cloud",
+        "AWS",
+        "Kubernetes",
+        "SRE",
+        "Platform",
+        "Python",
+        "Go"
       ]
     },
     {
@@ -980,23 +1044,6 @@
         "Go",
         "Linux",
         "GitOps"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Senior Platform Software Engineer",
-      "company": "Preply",
-      "location": "Barcelona, Catalonia, Spain",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4319110335",
-      "relocation": true,
-      "tags": [
-        "Cloud",
-        "AWS",
-        "SRE",
-        "Platform",
-        "Python",
-        "Go"
       ]
     },
     {
@@ -1047,23 +1094,6 @@
         "Cloud",
         "AWS",
         "CI/CD",
-        "Platform",
-        "Python",
-        "Go"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Senior Site Reliability Engineer (SRE & Platform Reliability)",
-      "company": "Affirm",
-      "location": "Remote",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4450747707",
-      "relocation": true,
-      "tags": [
-        "AWS",
-        "Kubernetes",
-        "SRE",
         "Platform",
         "Python",
         "Go"
@@ -1131,6 +1161,18 @@
     },
     {
       "category": "international",
+      "title": "Ground Segment Engineer",
+      "company": "The Exploration Company",
+      "location": "Dubai, Dubai, United Arab Emirates",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4416720369",
+      "relocation": true,
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "category": "international",
       "title": "Senior Platform Engineer",
       "company": "QuantumGate",
       "location": "Abu Dhabi, Abu Dhabi Emirate, United Arab Emirates",
@@ -1150,6 +1192,25 @@
         "CI/CD",
         "Platform",
         "Python",
+        "Go",
+        "Linux"
+      ]
+    },
+    {
+      "category": "international",
+      "title": "Senior Devops Engineer | Platform",
+      "company": "Ezypay",
+      "location": "Location not specified",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4448708977",
+      "relocation": true,
+      "tags": [
+        "DevOps",
+        "Cloud",
+        "AWS",
+        "Terraform",
+        "CI/CD",
+        "Platform",
         "Go",
         "Linux"
       ]
@@ -1189,25 +1250,6 @@
         "Platform",
         "Python",
         "Go"
-      ]
-    },
-    {
-      "category": "international",
-      "title": "Senior Devops Engineer | Platform",
-      "company": "Ezypay",
-      "location": "Location not specified",
-      "salary": null,
-      "url": "https://www.linkedin.com/jobs/view/4448708977",
-      "relocation": true,
-      "tags": [
-        "DevOps",
-        "Cloud",
-        "AWS",
-        "Terraform",
-        "CI/CD",
-        "Platform",
-        "Go",
-        "Linux"
       ]
     },
     {
